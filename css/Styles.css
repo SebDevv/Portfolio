@@ -1,0 +1,26 @@
+.Navbar-links-Div{
+  margin-right: 15px;
+}
+.Navbar-link-a{
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.Navbar-link-a:hover{
+  color: blue;
+}
+.Header{
+  text-align: center;
+  height: 96vh;
+  
+}
+.Middle{
+height: 100vh;
+
+}
+.Header-title{
+
+}
+body{
+  background-color: #F8F9FA;
+}
