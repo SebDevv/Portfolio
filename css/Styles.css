@@ -12,14 +12,19 @@
 .Header{
   text-align: center;
   height: 96vh;
-  
+
 }
 .Middle{
 height: 100vh;
 
 }
 .Header-title{
-
+  margin-top: 100px;
+}
+.Footer{
+  border-top: solid 0.5px;
+  border-color: grey;
+  height: 100px;
 }
 body{
   background-color: #F8F9FA;
