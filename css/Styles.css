@@ -1,31 +1,65 @@
-.Navbar-links-Div{
-  margin-right: 15px;
+nav.navbar{
+  position: fixed;
+  width: 100%;
+  background-color: #ffffff;
 }
-.Navbar-link-a{
+div.navbar-div{
+  margin-top: 1vh;
+  width: 100%;
+  text-align: center;
+}
+div.navbar-div a{
   padding: 10px;
   text-decoration: none;
   color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
-.Navbar-link-a:hover{
-  color: blue;
+.Navbar-link:hover{
+  color: grey;
 }
-.Header{
+section.welcome{
+  height: 100vh;
   text-align: center;
-  height: 96vh;
-
 }
-.Middle{
-height: 100vh;
-
+h1.welcome-h1{
+  padding-top: 10vh;
 }
-.Header-title{
-  margin-top: 100px;
+img.PP-Seb{
+  height: 300px;
+  width: 300px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
-.Footer{
-  border-top: solid 0.5px;
-  border-color: grey;
-  height: 100px;
+p.welcome-p{
+  text-align: center;
 }
-body{
-  background-color: #F8F9FA;
+table.languages{
+  margin: auto;
+}
+span.L-Not-learnt{
+  margin-left: 10%;
+  color: grey;
+}
+span.L-learning{
+  margin-left: 10%;
+  color: orangered;
+}
+span.L-learnt{
+  margin-left: 10%;
+  color: green;
+}
+section.about{
+  height: 100vh;
+  text-align: center;
+}
+h1.about-h1{
+  padding-top: 10vh;
+}
+section.contact{
+  height: 100vh;
+  text-align: center;
+}
+h1.contact-h1{
+  padding-top: 10vh;
 }
