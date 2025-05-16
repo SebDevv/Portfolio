@@ -36,13 +36,27 @@
       text-align: center;
       padding: 1rem 0;
     }
+    .skills-carousel {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    .skill-item {
+      display: inline-block;
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 1rem 2rem;
+      margin: 0 0.5rem;
+      border-radius: 30px;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
   <header>
     <h1>Hello, I'm Sebastian Raine</h1>
-    <p>Web Developer | Designer | App Developer</p>
+    <p>Web Developer | Designer | Creator</p>
     <a class="btn btn-light mt-3" href="#">Download CV</a>
   </header>
 
@@ -55,10 +69,14 @@
   <section class="section text-center">
     <h2 class="section-title">Skills</h2>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4">HTML & CSS</div>
-        <div class="col-md-4">JavaScript & Bootstrap</div>
-        <div class="col-md-4">UI/UX Design</div>
+      <div class="skills-carousel">
+        <span class="skill-item">HTML & CSS</span>
+        <span class="skill-item">JavaScript</span>
+        <span class="skill-item">Bootstrap</span>
+        <span class="skill-item">UI/UX Design</span>
+        <span class="skill-item">Responsive Design</span>
+        <span class="skill-item">Git & GitHub</span>
+        <span class="skill-item">Figma</span>
       </div>
     </div>
   </section>
@@ -98,15 +116,15 @@
   <section class="section text-center">
     <h2 class="section-title">Contact</h2>
     <div class="container">
-      <form class="row g-3 justify-content-center">
+      <form action="https://formspree.io/f/mldbzwdb" method="POST" class="row g-3 justify-content-center">
         <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="Your Name">
+          <input type="text" name="name" class="form-control" placeholder="Your Name" required>
         </div>
         <div class="col-md-6">
-          <input type="email" class="form-control" placeholder="Your Email">
+          <input type="email" name="email" class="form-control" placeholder="Your Email" required>
         </div>
         <div class="col-12">
-          <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+          <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Send Message</button>
