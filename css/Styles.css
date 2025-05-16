@@ -2,6 +2,8 @@ nav.navbar{
   position: fixed;
   width: 100%;
   background-color: #ffffff;
+  z-index: 1;
+  top: 0;
 }
 div.navbar-div{
   margin-top: 1vh;
@@ -16,48 +18,39 @@ div.navbar-div a{
   font-weight: bold;
 }
 .Navbar-link:hover{
-  color: grey;
+  color: #87CEEB;
 }
-section.welcome{
-  height: 100vh;
-  text-align: center;
-}
-h1.welcome-h1{
-  padding-top: 10vh;
-}
+
 img.PP-Seb{
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+
+
 }
-p.welcome-p{
-  text-align: center;
-}
-table.languages{
-  margin: auto;
-}
-span.L-Not-learnt{
-  margin-left: 10%;
-  color: grey;
-}
-span.L-learning{
-  margin-left: 10%;
-  color: orangered;
-}
-span.L-learnt{
-  margin-left: 10%;
-  color: green;
-}
-section.about{
-  height: 100vh;
-  text-align: center;
-}
-h1.about-h1{
+
+
+
+
+
+div.body-main{
   padding-top: 10vh;
 }
-section.contact{
-  height: 100vh;
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 0;
+  top: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+/* Control the left side */
+.About{
+  left: 0;
+  background-color: #111;
   text-align: center;
 }
-h1.contact-h1{
-  padding-top: 10vh;
+/* Control the right side */
+.Contact{
+  right: 0;
+  background-color: red;
 }
+
