@@ -37,20 +37,32 @@
       padding: 1rem 0;
     }
     .skills-carousel {
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      overflow: hidden;
-    }
-    .skill-item {
-      display: inline-block;
-      color: #000;
-      padding: 1rem 2rem;
-      margin: 0 0.5rem;
-      border-radius: 30px;
-      font-weight: bold;
-      
-    }
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.skills-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.skill-item {
+  flex: 0 0 auto;
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 180px;
+}
+.skill-item img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
   </style>
 </head>
 
@@ -155,6 +167,38 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const carousel = document.querySelector('.skills-carousel');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+  
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('dragging');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+  
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+  
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+  
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.5; // scroll speed
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+  
 </body>
 
 </html>
