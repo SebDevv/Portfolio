@@ -40,15 +40,16 @@
       overflow-x: auto;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
+      overflow: hidden;
     }
     .skill-item {
       display: inline-block;
-      background-color: #0d6efd;
-      color: #fff;
+      color: #000;
       padding: 1rem 2rem;
       margin: 0 0.5rem;
       border-radius: 30px;
       font-weight: bold;
+      
     }
   </style>
 </head>
@@ -56,8 +57,7 @@
 <body>
   <header>
     <h1>Hello, I'm Sebastian Raine</h1>
-    <p>Web Developer | Designer | Creator</p>
-    <a class="btn btn-light mt-3" href="#">Download CV</a>
+    <p>Web Developer | Designer | App Developer</p>
   </header>
 
   <section class="section text-center bg-white">
@@ -70,42 +70,59 @@
     <h2 class="section-title">Skills</h2>
     <div class="container">
       <div class="skills-carousel">
-        <span class="skill-item">HTML & CSS</span>
-        <span class="skill-item">JavaScript</span>
-        <span class="skill-item">Bootstrap</span>
-        <span class="skill-item">UI/UX Design</span>
-        <span class="skill-item">Responsive Design</span>
-        <span class="skill-item">Git & GitHub</span>
-        <span class="skill-item">Figma</span>
+        <div class="skill-item">
+          <img src="images/html.png" alt="HTML" height="150">
+          <p>HTML</p>
+        </div>
+        <div class="skill-item">
+          <img src="images/css.png" alt="CSS" height="150">
+          <p>CSS</p>
+        </div>
+        <div class="skill-item">
+          <img src="images/js.png" alt="JavaScript" height="150">
+          <p>JavaScript</p>
+        </div>
+        <div class="skill-item">
+          <img src="images/Flutter.png" alt="Flutter" height="150">
+          <p>Flutter</p>
+        </div>
+        <div class="skill-item">
+          <img src="images/CSharp.png" alt="C#" height="150">
+          <p>C#</p>
+        </div>
+        <div class="skill-item">
+          <img src="images/VF.png" alt="VisualFiles" height="150">
+          <p>VisualFiles</p>
+        </div>
       </div>
     </div>
   </section>
+  
 
   <section class="section text-center bg-white">
-    <h2 class="section-title">Projects</h2>
+    <h1 class="section-title">Current Project</h1>
+    <h2> FitTrackr</h2>
+    <h5>A Fitness Tracking Andriod App.</h5>
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Project One</h5>
-              <p class="card-text">A description of your first project goes here.</p>
+              <img src="images/FitTrackr1.jpg" alt="VisualFiles" height="600">
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Project Two</h5>
-              <p class="card-text">A description of your second project goes here.</p>
+              <img src="images/FitTrackr2.jpg" alt="VisualFiles" height="600">
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Project Three</h5>
-              <p class="card-text">A description of your third project goes here.</p>
+              <img src="images/FitTrackr3.jpg" alt="VisualFiles" height="600">
             </div>
           </div>
         </div>
