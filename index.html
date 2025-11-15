@@ -282,6 +282,56 @@
     applyLightMode(); // Default to light
   </script>
   <script>
+
+    const iframe = document.querySelector('#kanban iframe');
+
+    function applyDarkMode() {
+      body.classList.add("dark-mode");
+      navbar.classList.remove("navbar-light", "bg-light");
+      navbar.classList.add("navbar-dark", "bg-dark");
+      themeIcon.textContent = "☀️";
+      skillItems.forEach(item => {
+        item.classList.remove("text-dark");
+        item.classList.add("text-light");
+      });
+      sendThemeToBoard(true);
+    }
+
+    function applyLightMode() {
+      body.classList.remove("dark-mode");
+      navbar.classList.remove("navbar-dark", "bg-dark");
+      navbar.classList.add("navbar-light", "bg-light");
+      themeIcon.textContent = "🌙";
+      skillItems.forEach(item => {
+        item.classList.remove("text-light");
+        item.classList.add("text-dark");
+      });
+      sendThemeToBoard(false);
+    }
+
+    function sendThemeToBoard(isDark) {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'SET_THEME', dark: isDark }, '*');
+      }
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+      if (body.classList.contains("dark-mode")) {
+        applyLightMode();
+      } else {
+        applyDarkMode();
+      }
+    });
+
+    // Send initial theme when iframe loads
+    iframe.addEventListener('load', () => {
+      sendThemeToBoard(body.classList.contains("dark-mode"));
+    });
+
+    applyLightMode(); // Default to light
+  </script>
+
+  <script>
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
