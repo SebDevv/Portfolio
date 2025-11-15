@@ -38,9 +38,7 @@
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
       scroll-padding-top: 70px;
-      /* matches navbar height */
     }
-
 
     .snap-section {
       height: 100vh;
@@ -54,11 +52,8 @@
     .skills-carousel {
       display: flex;
       flex-wrap: nowrap;
-      /* Prevent wrapping */
       overflow-x: auto;
-      /* Horizontal scroll */
       overflow-y: hidden;
-      /* No vertical overflow */
       gap: 1rem;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -70,7 +65,6 @@
 
     .skill-item {
       flex: 0 0 auto;
-      /* Prevent shrinking/wrapping */
       transition: transform 0.2s ease;
       cursor: default;
     }
@@ -90,31 +84,23 @@
 
     .navbar-nav .nav-link {
       margin-right: 1rem;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
     }
 
     .content-wrapper {
       margin-top: 70px;
     }
 
-    .navbar-nav .nav-link {
-      padding: 0.5rem 1rem;
-      font-weight: 500;
-    }
-
     footer {
       display: flex;
-
-
       bottom: 0;
       left: 0;
       right: 0;
       height: 50px;
       width: 100%;
-
       justify-content: center;
       align-items: center;
-
-
     }
   </style>
 </head>
@@ -122,10 +108,7 @@
 <body>
   <nav class="navbar navbar-expand-lg" id="navbar">
     <div class="container justify-content-between">
-      <!-- Left: Brand -->
       <a class="navbar-brand me-auto" href="#">Sebastian Raine</a>
-
-      <!-- Center: Nav links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -135,22 +118,20 @@
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
-
-      <!-- Right: Theme toggle button -->
       <button class="btn btn-outline-secondary ms-auto" id="themeToggleBtn" type="button" aria-label="Toggle theme">
         <span id="themeIcon">🌙</span>
       </button>
     </div>
   </nav>
 
-
   <main class="snap-container">
     <section id="about" class="snap-section text-center">
       <h1>Hello, I’m Sebastian Raine</h1>
       <p class="lead">A passionate developer & designer.</p>
     </section>
+
     <section id="kanban" class="snap-section text-center">
-      <iframe src="https://sebdevv.github.io/Workflow-Board" style="width:100%; height:1000px; border:none;"
+      <iframe id="kanbanIframe" src="https://sebdevv.github.io/Workflow-Board" style="width:100%; border:none;"
         title="Kanban Board"></iframe>
     </section>
 
@@ -237,7 +218,6 @@
         <p>&copy; 2025 Sebastian. All rights reserved.</p>
       </footer>
     </section>
-
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -248,6 +228,10 @@
     const body = document.body;
     const navbar = document.getElementById("navbar");
     const skillItems = document.querySelectorAll(".skill-item");
+    const iframe = document.getElementById("kanbanIframe");
+
+    // Load saved theme from localStorage
+    const savedDark = localStorage.getItem('themeDark') === 'true';
 
     function applyDarkMode() {
       body.classList.add("dark-mode");
@@ -258,42 +242,7 @@
         item.classList.remove("text-dark");
         item.classList.add("text-light");
       });
-    }
-
-    function applyLightMode() {
-      body.classList.remove("dark-mode");
-      navbar.classList.remove("navbar-dark", "bg-dark");
-      navbar.classList.add("navbar-light", "bg-light");
-      themeIcon.textContent = "🌙";
-      skillItems.forEach(item => {
-        item.classList.remove("text-light");
-        item.classList.add("text-dark");
-      });
-    }
-
-    themeToggleBtn.addEventListener("click", () => {
-      if (body.classList.contains("dark-mode")) {
-        applyLightMode();
-      } else {
-        applyDarkMode();
-      }
-    });
-
-    applyLightMode(); // Default to light
-  </script>
-  <script>
-
-    const iframe = document.querySelector('#kanban iframe');
-
-    function applyDarkMode() {
-      body.classList.add("dark-mode");
-      navbar.classList.remove("navbar-light", "bg-light");
-      navbar.classList.add("navbar-dark", "bg-dark");
-      themeIcon.textContent = "☀️";
-      skillItems.forEach(item => {
-        item.classList.remove("text-dark");
-        item.classList.add("text-light");
-      });
+      localStorage.setItem('themeDark', 'true');
       sendThemeToBoard(true);
     }
 
@@ -306,6 +255,7 @@
         item.classList.remove("text-light");
         item.classList.add("text-dark");
       });
+      localStorage.setItem('themeDark', 'false');
       sendThemeToBoard(false);
     }
 
@@ -315,12 +265,13 @@
       }
     }
 
+    // Apply saved theme on load
+    if (savedDark) applyDarkMode();
+    else applyLightMode();
+
     themeToggleBtn.addEventListener("click", () => {
-      if (body.classList.contains("dark-mode")) {
-        applyLightMode();
-      } else {
-        applyDarkMode();
-      }
+      if (body.classList.contains("dark-mode")) applyLightMode();
+      else applyDarkMode();
     });
 
     // Send initial theme when iframe loads
@@ -328,10 +279,18 @@
       sendThemeToBoard(body.classList.contains("dark-mode"));
     });
 
-    applyLightMode(); // Default to light
-  </script>
+    // Listen for height messages from iframe
+    window.addEventListener('message', (event) => {
+      if (!event.data) return;
+      if (event.data.type === 'HEIGHT') {
+        iframe.style.height = event.data.height + 'px';
+      } else if (event.data.type === 'SET_THEME') {
+        if (event.data.dark) applyDarkMode();
+        else applyLightMode();
+      }
+    });
 
-  <script>
+    // Smooth scroll for navbar links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
